@@ -7,6 +7,4 @@ def solution(participant, completion):
     return answer
 
 
-
-
 solution(["mislav", "stanko", "mislav", "ana"], ["stanko", "ana", "mislav"])
