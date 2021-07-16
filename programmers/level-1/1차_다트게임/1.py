@@ -1,4 +1,3 @@
-# 10:54 ~11:29
 from collections import deque
 
 
