@@ -20,9 +20,10 @@ def solution(maps):
             x = temp[0] + dx[direction]
             y = temp[1] + dy[direction]
             if 0 <= x <= n - 1 and 0 <= y <= m - 1 and maps[x][y] == 1:
-                maps[temp[0]][temp[1]] = 0
-                dq.append((x, y))
-                dis[x][y] = dis[temp[0]][temp[1]] + 1
+                if dis[x][y] == 0:
+                    maps[temp[0]][temp[1]] = 0
+                    dq.append((x, y))
+                    dis[x][y] = dis[temp[0]][temp[1]] + 1
 
     if dis[n - 1][m - 1] == 0:
         return -1
