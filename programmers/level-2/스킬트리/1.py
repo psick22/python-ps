@@ -1,11 +1,16 @@
-# 17:33~17:41~
+# 17:33~18:16
+
 def solution(skill, skill_trees):
     answer = 0
-    res = []
+    tree_list = [skill[:i] for i in range(len(skill) + 1)]
+    print(tree_list)
     for tree in skill_trees:
-        for char in skill:
-            idx = tree.index(char)
-            if tree[0]
+        temp = ''
+        for i in range(len(tree)):
+            if tree[i] in list(skill):
+                temp += tree[i]
+        if temp in tree_list:
+            answer += 1
 
     return answer
 
