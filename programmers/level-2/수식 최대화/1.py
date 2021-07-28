@@ -26,17 +26,12 @@ def solution(expression):
         if i == len(expression) - 1:
             equation.append(expression[pointer:])
     permutations = list(it.permutations(used_ops))
-    # print(equation)
     answer = []
     for perm in permutations:
         temp = equation.copy()
-        # print('==============우선순위:', perm)
         for operator in perm:
             idx = 0
             while len(temp) > idx:
-                # print('temp', temp)
-                # print('idx', idx)
-                # print('operator', operator)
                 if temp[idx] == operator:
                     res = calculate(int(temp[idx - 1]), int(temp[idx + 1]), temp[idx])
                     temp = temp[0:idx - 1] + [res] + temp[idx + 2:]

@@ -30,7 +30,7 @@ def solution(p):
             cnt += 1
         else:
             cnt -= 1
-        if cnt == 0:  # 가장 작은 균형잡힌 문자열
+        if cnt == 0:
             u = p[:i + 1]
             v = p[i + 1:]
             break
