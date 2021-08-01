@@ -6,6 +6,7 @@ def solution(orders, course):
     answer = []
     cands = [[] for _ in range(len(course))]
     counters = []
+
     for i in range(len(orders)):
         orders[i] = ''.join(sorted(list(orders[i])))
 
@@ -17,12 +18,14 @@ def solution(orders, course):
 
     for i in range(len(cands)):
         counters.append(Counter(cands[i]))
-
+    # print(counters)
+    # print(counters[0].most_common())
     for i in range(len(course)):
         temp = []
         maxValue = 0
 
         for idx, item in enumerate(counters[i].most_common()):
+
             if idx == 0 and item[1] > maxValue:
                 maxValue = item[1]
                 temp.append(item)
