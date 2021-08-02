@@ -24,7 +24,7 @@ def solution(numbers):
     return answer
 
 
-numbers = [0, 7]
+numbers = [3, 7]
 results = [3, 11]
 
 print(solution(numbers))
