@@ -15,54 +15,33 @@ def solution(n, t, m, timetable):
     # n회, t분 간격, m명씩
     bus_table = [60 * 9 + i * t for i in range(n)]
     table = []
-    counter = {}
     for time in timetable:
         hour, minute = map(int, time.split(':'))
         ts = hour * 60 + minute
         table.append(ts)
 
-    table.sort()
-    print(table)
-    for ts in table:
-        if ts not in counter.keys():
-            counter[ts] = 1
-        else:
-            counter[ts] += 1
+    table.sort(reverse=True)
 
-    for i, bus in enumerate(bus_table):
-        temp = 0  # 버스에 타는 인원
-        cnt = 0
+    idx = 0
+    while idx < len(bus_table):
         times = []
+        temp = 0  # 해당 버스에 타는 인원
         while temp != m:
-            if table[temp] <= bus:
+            if len(table) >= 1 and table[-1] <= bus_table[idx]:
                 temp += 1
-        for k, v in counter.items():
-            if k <= bus:
-                if temp + v <= m:
-                    temp += v
-                    counter[k] = 0
-                    cnt += 1
-                    times.append(k)
-                else:
-                    counter[k] -= (m - temp)
-                    temp = m
+                times.append(table.pop())
+            else:
+                break
 
         # 버스가 끝났을때
-        if i == len(bus_table) - 1:
+        if idx == len(bus_table) - 1:
             if temp == m:  # 빈자리가 없을 때
                 res = times.pop() - 1
                 return toStr(res)
             else:  # 빈자리가 있을 때
-                return toStr(bus)
+                return toStr(bus_table[idx])
 
-
-        # 버스가 안끝났을때
-        else:
-            if cnt == len(counter.keys()):  # 버스가 안 끝났는데 사람들이 다탔을 때
-                if temp < m:
-                    return toStr(bus)
-                else:
-                    return toStr(bus + 60 * t)
+        idx += 1
 
 
 nn = [1, 1, 2, 2, 1, 1, 10, 1, 2]
